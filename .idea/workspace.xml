@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="164dd16d-8983-4b2d-bdb8-7af63531d6b2" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="23xfQzzn2ax9LcrEUynXIp5GwID" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn install" />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.ZapRestApiApplication">
+    <configuration name="Alerts" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tr.com.stm.cydecsys.zaprestapi.Alerts" />
+      <module name="ZAPRestAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tr.com.stm.cydecsys.zaprestapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Spider" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tr.com.stm.cydecsys.zaprestapi.Spider" />
+      <module name="ZAPRestAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tr.com.stm.cydecsys.zaprestapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ZapRestApiApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tr.com.stm.cydecsys.zaprestapi.ZapRestApiApplication" />
+      <module name="ZAPRestAPI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tr.com.stm.cydecsys.zaprestapi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ZapRestApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ZAPRestAPI" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tr.com.stm.cydecsys.zaprestapi.ZapRestApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ZapRestApiApplication" />
+        <item itemvalue="Application.Alerts" />
+        <item itemvalue="Application.Spider" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="164dd16d-8983-4b2d-bdb8-7af63531d6b2" name="Changes" comment="" />
+      <created>1642680651698</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642680651698</updated>
+      <workItem from="1642680653078" duration="1067000" />
+      <workItem from="1642681897740" duration="7891000" />
+      <workItem from="1642745083306" duration="7605000" />
+      <workItem from="1643006389300" duration="9395000" />
+      <workItem from="1643035377791" duration="4000" />
+      <workItem from="1643035572392" duration="1000" />
+      <workItem from="1643093073293" duration="3462000" />
+      <workItem from="1643113232327" duration="1914000" />
+      <workItem from="1643115243143" duration="2778000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
