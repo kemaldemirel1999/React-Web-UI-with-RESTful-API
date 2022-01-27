@@ -33,7 +33,7 @@ public class ZAPDaemon implements Runnable{
         }
         return false;
     }
-    public void waitOwaspZAP(){
+    public boolean waitOwaspZAP(){
         try{
             long startTime = System.currentTimeMillis();
             while (true){
@@ -42,18 +42,19 @@ public class ZAPDaemon implements Runnable{
                 isOwaspAlive = isOwaspZapAlive();
                 if(isOwaspAlive){
                     System.out.println("OwaspZap is Running in the background.");
-                    break;
+                    return true;
                 }
                 long estimatedTime = System.currentTimeMillis() - startTime;
                 if (estimatedTime > 15000){
                     System.out.println("Too much time passed while trying to open Owasp Zap. Program automatically terminated");
-                    return;
+                    return false;
                 }
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
+        return false;
     }
     public void run() {
         ExecuteBashCommand cmd = new ExecuteBashCommand();

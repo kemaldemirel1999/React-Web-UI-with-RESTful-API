@@ -16,7 +16,9 @@ public class ZapRestApiApplication {
         thread.start();
 
         // To make sure OWASP ZAP is started, we should wait
-        zapDaemon.waitOwaspZAP();
+        if(zapDaemon.waitOwaspZAP() == false ){
+            return;
+        }
 
         Spider spider = new Spider();
         System.out.println("scanID:[" + spider.runSpider()+"]");
