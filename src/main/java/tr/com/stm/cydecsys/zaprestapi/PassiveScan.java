@@ -5,15 +5,29 @@ import org.zaproxy.clientapi.core.ClientApi;
 
 import java.nio.charset.StandardCharsets;
 
-public class PassiveScan {
+public class PassiveScan{
 
-    private static final int ZAP_PORT = 8090;
-    private static final String ZAP_API_KEY = "hc9fl5vmd1bsmoc0qo2u8hjn7c";
-    private static final String ZAP_ADDRESS = "localhost";
+    private int ZAP_PORT = 8090;
+    private String ZAP_API_KEY = "hc9fl5vmd1bsmoc0qo2u8hjn7c";
+    private String ZAP_ADDRESS = "localhost";
+    private int numberOfRecords = -1;
+
+    public void setZAP_PORT(int port){
+        ZAP_PORT = port;
+    }
+    public void setZAP_ADDRESS(String address){
+        this.ZAP_ADDRESS = address;
+    }
+    public void setZAP_API_KEY(String api_key){
+        this.ZAP_API_KEY = api_key;
+    }
+    public int getNumberOfRecords(){
+        return numberOfRecords;
+    }
 
     public String runPassiveScan() {
         ClientApi api = new ClientApi(ZAP_ADDRESS, ZAP_PORT, ZAP_API_KEY);
-        int numberOfRecords;
+
 
         try {
             // TODO : explore the app (Spider, etc) before using the Passive Scan API, Refer the explore section for details
@@ -21,12 +35,12 @@ public class PassiveScan {
                 Thread.sleep(2000);
                 api.pscan.recordsToScan();
                 numberOfRecords = Integer.parseInt(((ApiResponseElement) api.pscan.recordsToScan()).getValue());
-                System.out.println("Number of records left for scanning : " + numberOfRecords);
+//                System.out.println("Number of records left for scanning : " + numberOfRecords);
                 if (numberOfRecords == 0) {
                     break;
                 }
             }
-            System.out.println("Passive Scan completed");
+//            System.out.println("Passive Scan completed");
             return ( new String(api.core.xmlreport(), StandardCharsets.UTF_8) );
         } catch (Exception e) {
             System.out.println("Exception : " + e.getMessage());
@@ -34,4 +48,5 @@ public class PassiveScan {
         }
         return null;
     }
+
 }

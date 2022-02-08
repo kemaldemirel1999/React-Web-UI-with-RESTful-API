@@ -21,7 +21,7 @@ public class ZAPDaemon implements Runnable{
         scanner.close();
         stop();
     }
-    public boolean isOwaspZapAlive(){
+    public static boolean isOwaspZapAlive(){
         ExecuteBashCommand cmd2 = new ExecuteBashCommand();
         String ps_aux = cmd2.executeCommand("ps aux");
         Scanner scanner = new Scanner(ps_aux);
@@ -66,8 +66,6 @@ public class ZAPDaemon implements Runnable{
     }
     public void stop() {
         exit = true;
-
-
     }
 
 }
