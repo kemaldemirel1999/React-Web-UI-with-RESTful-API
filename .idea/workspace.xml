@@ -14,9 +14,6 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/model/ZAPScanResult.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/repository/ZAPRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/services/ZAPScanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/Spider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/Spider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/ZAPDaemon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/ZAPDaemon.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +167,7 @@
       <workItem from="1644215926535" duration="20259000" />
       <workItem from="1644245820256" duration="6000" />
       <workItem from="1644301534448" duration="16536000" />
-      <workItem from="1644387397090" duration="2824000" />
+      <workItem from="1644387397090" duration="3437000" />
     </task>
     <servers />
   </component>
