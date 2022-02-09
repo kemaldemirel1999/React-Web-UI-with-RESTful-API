@@ -18,11 +18,9 @@ public class ZAPScanService {
     public List<ZAPScanResult> findAll(){
         return (List<ZAPScanResult>) zapRepository.findAll();
     }
-
     public Optional<ZAPScanResult> getUrlById(int id){
         return zapRepository.findById(id);
     }
-
     public void saveOrUpdate(ZAPScanResult addingURL){
         zapRepository.save(addingURL);
     }

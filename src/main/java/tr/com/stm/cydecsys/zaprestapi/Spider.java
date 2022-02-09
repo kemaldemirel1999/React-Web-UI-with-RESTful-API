@@ -1,15 +1,10 @@
 package tr.com.stm.cydecsys.zaprestapi;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.web.bind.annotation.RestController;
 import org.zaproxy.clientapi.core.ApiResponse;
 import org.zaproxy.clientapi.core.ApiResponseElement;
 import org.zaproxy.clientapi.core.ApiResponseList;
 import org.zaproxy.clientapi.core.ClientApi;
-import tr.com.stm.cydecsys.zaprestapi.controller.URLController;
 import tr.com.stm.cydecsys.zaprestapi.model.ZAPScanResult;
-import tr.com.stm.cydecsys.zaprestapi.services.ZAPScanService;
 
 
 import java.util.List;
@@ -22,19 +17,14 @@ public class Spider extends Thread{
     private String TARGET = "http://scanme.nmap.org/";
 
     private boolean isScanSuccessful= false;
-    private String scanID = null;
+    private String spiderId = null;
     private List<ApiResponse> spiderResults;
-    private volatile boolean exit = false;
     private boolean isPassiveScanFinished = false;
     private String passiveScanResults = "";
     private PassiveScan passiveScan;
     private int id = -1;
 
-
-    public List<ApiResponse> getSpiderResults(){
-        if (spiderResults != null)  return spiderResults;
-        else                        return null;
-    }
+    public List<ApiResponse> getSpiderResults(){return spiderResults;}
     public void setTARGET(String target){
         this.TARGET = target;
     }
@@ -50,7 +40,6 @@ public class Spider extends Thread{
     public void setZAP_API_KEY(String api_key){
         this.ZAP_API_KEY = api_key;
     }
-
     public String getPassiveScanResults(){
         return passiveScanResults;
     }
@@ -64,7 +53,7 @@ public class Spider extends Thread{
         return passiveScan.getNumberOfRecords();
     }
     public String getSpiderID(){
-        return scanID;
+        return spiderId;
     }
 
     public boolean getScanState(){
@@ -76,20 +65,20 @@ public class Spider extends Thread{
 //            System.out.println("Spidering target : " + TARGET);
             ApiResponse resp = api.spider.scan(TARGET, null, null, null, null);
             int progress;
-            scanID = ((ApiResponseElement) resp).getValue();
+            spiderId = ((ApiResponseElement) resp).getValue();
             while (true) {
                 Thread.sleep(1000);
-                progress = Integer.parseInt(((ApiResponseElement) api.spider.status(scanID)).getValue());
+                progress = Integer.parseInt(((ApiResponseElement) api.spider.status(spiderId)).getValue());
 //                System.out.println("Spider progress : " + progress + "%");
                 if (progress >= 100) {
                     break;
                 }
             }
 //            System.out.println("Spider completed");
-            spiderResults = ((ApiResponseList) api.spider.results(scanID)).getItems();
+            spiderResults = ((ApiResponseList) api.spider.results(spiderId)).getItems();
             isScanSuccessful = true;
             // TODO: Explore the Application more with Ajax Spider or Start scanning the application for vulnerabilities
-            return scanID;
+            return spiderId;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Exception : " + e.getMessage());
@@ -104,6 +93,6 @@ public class Spider extends Thread{
         passiveScan = new PassiveScan();
         passiveScanResults = passiveScan.runPassiveScan();
         isPassiveScanFinished = true;
-        ZAPScanResult addingURL = new ZAPScanResult(getScanID(), Integer.parseInt(getSpiderID()), this.TARGET, getPassiveScanResults());
+        ZAPScanResult addingZAPScanResult = new ZAPScanResult(getScanID(), Integer.parseInt(getSpiderID()), this.TARGET, getPassiveScanResults());
     }
 }

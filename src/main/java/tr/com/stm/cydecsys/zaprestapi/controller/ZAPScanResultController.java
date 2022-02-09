@@ -1,33 +1,31 @@
 package tr.com.stm.cydecsys.zaprestapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.com.stm.cydecsys.zaprestapi.*;
-import tr.com.stm.cydecsys.zaprestapi.model.ZAPScanResult;
 import tr.com.stm.cydecsys.zaprestapi.services.ZAPScanService;
 
 import java.util.ArrayList;
 
 @RestController
-public class URLController {
+public class ZAPScanResultController {
 
     @Autowired
     ZAPScanService zapScanService;
 
-    private ZAPDaemon zapDaemon = new ZAPDaemon();
+    private ZAPDaemon zapDaemon;
     private static ArrayList<Spider> spiders = new ArrayList<>();
     private int scanIDCounter = 0;
 
-    public URLController() {
+    public ZAPScanResultController() {
         if( !ZAPDaemon.isOwaspZapAlive()){
             zapDaemon = new ZAPDaemon();
             Thread zapDaemonThread = new Thread(zapDaemon, "T1");
             zapDaemonThread.start();
             if(zapDaemon.waitOwaspZAP() == false ){
-                return;
+                System.exit(1);
             }
         }
     }
@@ -60,23 +58,13 @@ public class URLController {
     @PostMapping(value = "/create-scan")
     public ResponseEntity<String> scan(@RequestBody String newTarget){
         scanIDCounter++;
-        if( !ZAPDaemon.isOwaspZapAlive()){
-            zapDaemon = new ZAPDaemon();
-            Thread zapDaemonThread = new Thread(zapDaemon, "T1");
-            zapDaemonThread.start();
-            if(zapDaemon.waitOwaspZAP() == false ){
-                return new ResponseEntity<>(
-                        "OwaspZap failed to run"+"\n", HttpStatus.BAD_REQUEST
-                );
-            }
-        }
         Spider spider = new Spider();
         spider.setScanID(scanIDCounter);
         spider.setTARGET(newTarget);
         spiders.add(spider);
         spider.start();
         return new ResponseEntity<>(
-                "Id:"+scanIDCounter+", Success status:"+spider.IsPassiveScanFinished()+"\n", HttpStatus.OK
+                "Id:"+scanIDCounter+"\n", HttpStatus.OK
         );
     }
     public static void killThread(int id){

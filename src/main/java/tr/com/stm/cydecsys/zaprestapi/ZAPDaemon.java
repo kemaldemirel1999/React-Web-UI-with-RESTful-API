@@ -11,7 +11,7 @@ public class ZAPDaemon implements Runnable{
         Scanner scanner = new Scanner(ps_aux);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            if(line.contains("/opt/zaproxy/zap")){
+            if(line.contains("/opt/zaproxy/zap") && line.contains("daemon")){
                 String[] temp = line.trim().split("\\s+");
                 String killCommand = "kill -9 "+ temp[1];
                 cmd2.executeCommand(killCommand);
@@ -27,7 +27,7 @@ public class ZAPDaemon implements Runnable{
         Scanner scanner = new Scanner(ps_aux);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            if(line.contains("/opt/zaproxy/zap")){
+            if(line.contains("/opt/zaproxy/zap") && line.contains("daemon")){
                 return true;
             }
         }
