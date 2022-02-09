@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="164dd16d-8983-4b2d-bdb8-7af63531d6b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/PassiveScan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/Spider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZAPDaemon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZapRestApiApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/controller/ZAPScanResultController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/model/ZAPScanResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/repository/ZAPRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/services/ZAPScanService.java" afterDir="false" />
+    <list default="true" id="164dd16d-8983-4b2d-bdb8-7af63531d6b2" name="Changes" comment="No database">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,8 +159,16 @@
       <workItem from="1644215926535" duration="20259000" />
       <workItem from="1644245820256" duration="6000" />
       <workItem from="1644301534448" duration="16536000" />
-      <workItem from="1644387397090" duration="3437000" />
+      <workItem from="1644387397090" duration="4303000" />
     </task>
+    <task id="LOCAL-00001" summary="No database">
+      <created>1644393691967</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644393691967</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,5 +184,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="No database" />
+    <option name="LAST_COMMIT_MESSAGE" value="No database" />
   </component>
 </project>
