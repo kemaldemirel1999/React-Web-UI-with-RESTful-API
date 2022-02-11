@@ -4,6 +4,7 @@ import org.zaproxy.clientapi.core.ApiResponse;
 import org.zaproxy.clientapi.core.ApiResponseElement;
 import org.zaproxy.clientapi.core.ApiResponseList;
 import org.zaproxy.clientapi.core.ClientApi;
+import tr.com.stm.cydecsys.zaprestapi.controller.ZAPScanResultController;
 import tr.com.stm.cydecsys.zaprestapi.model.ZAPScanResult;
 
 
@@ -16,10 +17,8 @@ public class Spider extends Thread{
     private String ZAP_API_KEY = "hc9fl5vmd1bsmoc0qo2u8hjn7c";
     private String TARGET = "http://scanme.nmap.org/";
 
-    private boolean isScanSuccessful= false;
     private String spiderId = null;
     private List<ApiResponse> spiderResults;
-    private boolean isPassiveScanFinished = false;
     private String passiveScanResults = "";
     private PassiveScan passiveScan;
     private int id = -1;
@@ -28,11 +27,9 @@ public class Spider extends Thread{
     public void setTARGET(String target){
         this.TARGET = target;
     }
+    public String getTARGET(){return TARGET;}
     public void setZAP_PORT(int port){
         ZAP_PORT = port;
-    }
-    public boolean IsPassiveScanFinished(){
-        return isPassiveScanFinished;
     }
     public void setZAP_ADDRESS(String address){
         this.ZAP_ADDRESS = address;
@@ -50,14 +47,11 @@ public class Spider extends Thread{
         return id;
     }
     public int getPassiveScanNumberOfRecords(){
-        return passiveScan.getNumberOfRecords();
+        if(passiveScan == null)     return -1;
+        return                      passiveScan.getNumberOfRecords();
     }
     public String getSpiderID(){
         return spiderId;
-    }
-
-    public boolean getScanState(){
-        return isScanSuccessful;
     }
     public String runSpider() {
         ClientApi api = new ClientApi(ZAP_ADDRESS, ZAP_PORT, ZAP_API_KEY);
@@ -76,7 +70,6 @@ public class Spider extends Thread{
             }
 //            System.out.println("Spider completed");
             spiderResults = ((ApiResponseList) api.spider.results(spiderId)).getItems();
-            isScanSuccessful = true;
             // TODO: Explore the Application more with Ajax Spider or Start scanning the application for vulnerabilities
             return spiderId;
         } catch (Exception e) {
@@ -84,7 +77,6 @@ public class Spider extends Thread{
             System.out.println("Exception : " + e.getMessage());
             e.printStackTrace();
         }
-        isScanSuccessful = false;
         return null;
     }
 
@@ -92,7 +84,10 @@ public class Spider extends Thread{
         runSpider();
         passiveScan = new PassiveScan();
         passiveScanResults = passiveScan.runPassiveScan();
-        isPassiveScanFinished = true;
-        ZAPScanResult addingZAPScanResult = new ZAPScanResult(getScanID(), Integer.parseInt(getSpiderID()), this.TARGET, getPassiveScanResults());
+        ExecuteBashCommand cmd = new ExecuteBashCommand();
+        String command = "curl -v localhost:8080/add-database/"+ getScanID();
+        cmd.executeCommand(command);
+        command = "curl -v localhost:8080/kill-spider/"+getScanID();
+        cmd.executeCommand(command);
     }
 }

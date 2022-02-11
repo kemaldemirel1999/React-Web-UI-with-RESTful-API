@@ -1,7 +1,6 @@
 package tr.com.stm.cydecsys.zaprestapi.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 import tr.com.stm.cydecsys.zaprestapi.model.ZAPScanResult;
 import tr.com.stm.cydecsys.zaprestapi.repository.ZAPRepository;
@@ -18,15 +17,11 @@ public class ZAPScanService {
     public List<ZAPScanResult> findAll(){
         return (List<ZAPScanResult>) zapRepository.findAll();
     }
-    public Optional<ZAPScanResult> getUrlById(int id){
-        return zapRepository.findById(id);
-    }
+    public Optional<ZAPScanResult> getZAPScanResultById(int id){return zapRepository.findById(id);}
     public void saveOrUpdate(ZAPScanResult addingURL){
         zapRepository.save(addingURL);
     }
     public void delete(int id){
         zapRepository.deleteById(id);
     }
-
-
 }

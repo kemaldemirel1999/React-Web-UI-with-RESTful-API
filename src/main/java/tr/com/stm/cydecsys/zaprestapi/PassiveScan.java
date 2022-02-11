@@ -27,8 +27,6 @@ public class PassiveScan{
 
     public String runPassiveScan() {
         ClientApi api = new ClientApi(ZAP_ADDRESS, ZAP_PORT, ZAP_API_KEY);
-
-
         try {
             // TODO : explore the app (Spider, etc) before using the Passive Scan API, Refer the explore section for details
             while (true) {
