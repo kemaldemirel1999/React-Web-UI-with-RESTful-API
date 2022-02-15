@@ -8,6 +8,11 @@ import tr.com.stm.cydecsys.zaprestapi.repository.ZAPRepository;
 import java.util.List;
 import java.util.Optional;
 
+
+/*
+    This is Service class. It helps us to save, delete, get data from our database.
+    This is a gate between Controller and mongoRepository
+ */
 @Service
 public class ZAPScanService {
 
@@ -15,13 +20,17 @@ public class ZAPScanService {
     ZAPRepository zapRepository;
 
     public List<ZAPScanResult> findAll(){
-        return (List<ZAPScanResult>) zapRepository.findAll();
+        return (List<ZAPScanResult>)zapRepository.findAll();
     }
-    public Optional<ZAPScanResult> getZAPScanResultById(int id){return zapRepository.findById(id);}
-    public void saveOrUpdate(ZAPScanResult addingURL){
-        zapRepository.save(addingURL);
+    public void deleteAllDatabase(){
+        zapRepository.deleteAll();
     }
-    public void delete(int id){
+    public Optional<ZAPScanResult> getZAPScanResultById(String id){
+        return zapRepository.findById(id);}
+    public void saveOrUpdate(ZAPScanResult addingZAPScanResult){
+        zapRepository.save(addingZAPScanResult);
+    }
+    public void delete(String  id){
         zapRepository.deleteById(id);
     }
 }

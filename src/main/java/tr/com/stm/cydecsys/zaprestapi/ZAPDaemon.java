@@ -2,9 +2,16 @@ package tr.com.stm.cydecsys.zaprestapi;
 
 import java.util.Scanner;
 
+/*
+    This class does operations such as closing, opening for OWASPZAP
+    It must be executed before doing Spider, PassiveScan etc.
+*/
 public class ZAPDaemon implements Runnable{
+
+    // When "exit" is true, this ZAPDaemon thread is terminated
     private volatile boolean exit = false;
 
+    // This method terminates OWASPZAP.
     public void terminateZAP(){
         ExecuteBashCommand cmd2 = new ExecuteBashCommand();
         String ps_aux = cmd2.executeCommand("ps aux");
@@ -21,6 +28,8 @@ public class ZAPDaemon implements Runnable{
         scanner.close();
         stop();
     }
+
+    // Check OWASPZAP to see if running in background
     public static boolean isOwaspZapAlive(){
         ExecuteBashCommand cmd2 = new ExecuteBashCommand();
         String ps_aux = cmd2.executeCommand("ps aux");
@@ -28,11 +37,15 @@ public class ZAPDaemon implements Runnable{
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if(line.contains("/opt/zaproxy/zap") && line.contains("daemon")){
+                scanner.close();
                 return true;
             }
         }
+        scanner.close();
         return false;
     }
+
+    // If OWASPZAP cannot executed correctly, return false, otherwise true
     public boolean waitOwaspZAP(){
         try{
             long startTime = System.currentTimeMillis();
@@ -56,13 +69,11 @@ public class ZAPDaemon implements Runnable{
         }
         return false;
     }
+
     public void run() {
         ExecuteBashCommand cmd = new ExecuteBashCommand();
         cmd.executeCommand("zap.sh -daemon");
-
-        while(!exit) {
-
-        }
+        while(!exit) {}
     }
     public void stop() {
         exit = true;

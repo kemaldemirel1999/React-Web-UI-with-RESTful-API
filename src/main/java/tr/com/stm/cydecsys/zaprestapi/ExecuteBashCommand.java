@@ -3,8 +3,13 @@ package tr.com.stm.cydecsys.zaprestapi;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/*
+    This class helps to execute Terminal commands from our Java Program.
+ */
 public class ExecuteBashCommand {
 
+
+    // This methods takes a parameter and execute that command in Terminal for example: Bash Console
     public String executeCommand(String command) {
         StringBuffer output = new StringBuffer();
         Process p;

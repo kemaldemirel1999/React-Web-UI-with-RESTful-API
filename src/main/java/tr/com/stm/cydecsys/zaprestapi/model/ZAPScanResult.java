@@ -1,38 +1,36 @@
 package tr.com.stm.cydecsys.zaprestapi.model;
 
-
+import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table
+/*
+    This is a object that will be saved to database.
+*/
+@Document(collection = "ZAPScanResults")
 public class ZAPScanResult {
 
+    // id is our primary key
     @Id
-    @Column
-    private int scan_id;
-    @Column
+    private String id;
+
     private int spider_id;
-    @Column
     private String targetURL;
-    @Column(length = 999999999)
     private String result;
 
-    public ZAPScanResult(int id, int spider_id, String url, String result)
+    public ZAPScanResult(String id, int spider_id, String url, String result)
     {
-        this.scan_id = id;
+        this.id = id;
         this.spider_id = spider_id;
         this.targetURL = url;
         this.result = result;
     }
-    public ZAPScanResult()
-    {}
-
-    public void setScanId(int id) {
-        this.scan_id = id;
+    public ZAPScanResult(){}
+    public void setScanId(String id) {
+        this.id = id;
     }
-    public int getScanId() {
-        return this.scan_id;
+    public String getScanId() {
+        return this.id;
     }
     public String getUrl(){
         return targetURL;
@@ -62,14 +60,14 @@ public class ZAPScanResult {
             return false;
         }
         ZAPScanResult url = (ZAPScanResult) o;
-        return Objects.equals(this.scan_id, url.scan_id) && Objects.equals(this.targetURL, url.targetURL);
+        return Objects.equals(this.id, url.id) && Objects.equals(this.targetURL, url.targetURL);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(this.scan_id, this.targetURL);
+        return Objects.hash(this.id, this.targetURL);
     }
     @Override
     public String toString() {
-        return "id:"+scan_id +"\nurl:"+targetURL+"\nspider_id:"+spider_id+"\nresult:"+result+"\n";
+        return "{\nid:"+id +"\nurl:"+targetURL+"\nspider_id:"+spider_id+"\nresult:"+result+"\n}\n";
     }
 }
