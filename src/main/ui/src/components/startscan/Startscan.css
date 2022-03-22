@@ -1,0 +1,62 @@
+.newScan {
+    flex: 4;
+  }
+  
+  .newScanForm {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .newScanTitle{
+    margin-bottom: 10px;
+    font-size: 40px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.514);
+  }
+  .newUserItem {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  
+  .newUserItem > label {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(189, 26, 26);
+  }
+  
+  .newUserItem > input {
+    height: 30px;
+    padding: 10px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+  }
+  
+  .newUserGender > input {
+    margin-top: 15px;
+  }
+  
+  .newUserGender>label{
+      margin: 10px;
+      font-size: 14px;
+      color: rgb(0, 0, 0);
+  }
+  
+  .newUserSelect{
+      height: 30px;
+      border-radius: 7px;
+  }
+  
+  .newUserButton{
+      width: 200px;
+      border: none;
+      background-color: rgb(57, 190, 52);
+      color: white;
+      padding: 7px 10px;
+      font-weight: 600;
+      border-radius: 10px;
+      margin-top: 30px;
+      cursor: pointer;
+  }

@@ -1,5 +1,6 @@
 package tr.com.stm.cydecsys.zaprestapi.controller;
 
+import org.bson.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import tr.com.stm.cydecsys.zaprestapi.*;
 import tr.com.stm.cydecsys.zaprestapi.model.ZAPScanResult;
 import tr.com.stm.cydecsys.zaprestapi.services.ZAPScanService;
 
+import java.io.PrintWriter;
 import java.sql.SQLOutput;
 import java.util.*;
 
@@ -18,6 +20,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
         This class helps us to manage POST,DELETE,GET requests.
  */
 @RestController
+@RequestMapping("api/")
 public class ZAPScanResultController {
 
     @Autowired
@@ -46,6 +49,24 @@ public class ZAPScanResultController {
             }
         }
     }
+
+    @GetMapping("scans")
+    public void getAllScans(){
+        List<ZAPScanResult> results = new ArrayList<>();
+        results.addAll(zapScanService.findAll());
+        for(ZAPScanResult zapScanResult : results) {
+            JsonObject json = new JsonObject(zapScanResult.toString());
+            System.out.println(json.toString());
+        }
+        //System.out.print(zapScanService.findAll());
+//        PrintWriter outputStream = null;
+//        try{
+//            outputStream = new PrintWriter()
+//        }catch (Exception e){
+//
+//        }
+    }
+
 
     // Takes a ZAPScanResult object and saves it to database or updates the database with new zapScanResult object
     public void addZAPScanResultToDatabase(ZAPScanResult zapScanResult){

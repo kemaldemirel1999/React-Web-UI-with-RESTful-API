@@ -1,0 +1,12 @@
+[{"id":1,"scanType":"Passive","targetURL":"www.example.com.tr","status":"Finished","highrisks":"2","middlerisks":"3","lowrisks":7},
+{"id":2,"scanType":"Active","targetURL":"www.example.com.tr","status":"Continuing","highrisks":"3","middlerisks":"5","lowrisks":0},
+{"id":3,"scanType":"Passive","targetURL":"www.example.com.tr","status":"Finished","highrisks":"4","middlerisks":"6","lowrisks":5},
+{"id":4,"scanType":"Passive","targetURL":"www.example.com.tr","status":"Continuing","highrisks":"0","middlerisks":"3","lowrisks":2},
+{"id":5,"scanType":"Passive","targetURL":"www.example.com.tr","status":"Failed","highrisks":"0","middlerisks":"4","lowrisks":2},
+{"id":6,"scanType":"Active","targetURL":"www.example.com.tr","status":"Finished","highrisks":"0","middlerisks":"5","lowrisks":124},
+{"id":7,"scanType":"Passive","targetURL":"www.example.com.tr","status":"Finished","highrisks":"22","middlerisks":"248","lowrisks":1},
+{"id":8,"scanType":"Passive","targetURL":"www.example.com.tr","status":"Continuing","highrisks":"45","middlerisks":"44","lowrisks":78},
+{"id":9,"scanType":"Active","targetURL":"www.example.com.tr","status":"Finished","highrisks":"78","middlerisks":"21","lowrisks":99},
+{"id":10,"scanType":"Active","targetURL":"www.example.com.tr","status":"Continuing","highrisks":"7","middlerisks":"0","lowrisks":0},
+{"id":11,"scanType":"Active","targetURL":"www.example.com.tr","status":"Finished","highrisks":"7","middlerisks":"4","lowrisks":0},
+{"id":12,"scanType":"Passive","targetURL":"www.example.com.tr","status":"Continuing","highrisks":"8","middlerisks":"5","lowrisks":6}]

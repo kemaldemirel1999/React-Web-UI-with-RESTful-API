@@ -1,0 +1,10 @@
+[
+    {
+        "icon": "bx bx-cog",
+        "content": "Settings"
+    },
+    {
+        "icon": "bx bx-log-out-circle bx-rotate-180",
+        "content": "Logout"
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "display_name": "Home",
+        "route": "/",
+        "icon": "bx bx-home-circle"
+    },
+    {
+        "display_name": "Scans",
+        "route": "/scans",
+        "icon": "bx bx-meteor"
+    },
+    {
+        "display_name": "Settings",
+        "route": "/settings",
+        "icon": "bx bx-cog"
+    },
+    {
+        "display_name": "Start New Scan",
+        "route": "/startscan",
+        "icon": "bx bx-check-circle"
+    },
+    {
+        "display_name": "Documentation",
+        "route": "/documentation",
+        "icon": "bx bx-store-alt"
+    }
+]
