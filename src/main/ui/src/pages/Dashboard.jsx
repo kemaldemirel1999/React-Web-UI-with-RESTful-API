@@ -10,23 +10,29 @@ import Badge from '../components/badge/Badge'
 
 import statusCards from '../assets/JsonData/status-card-data.json'
 
-const latestOrders = {
-    header: [
-        "ID",
-        "Scan Type",
-        "Target URL",
-        "Status"
-    ],
-    body: [
-        {
-            id: "1",
-            scantype: "Passive",
-            targeturl: "www.example.com.tr",
-            status: "Finished"
-        }
-    ]
-}
+import lastScanList from '../assets/JsonData/last-scan-list.json'
 
+const renderHead = (item, index) => <th key={index}>{item}</th>
+
+const latestScanHead = [
+    'ID',
+    'Scan Type',
+    'Target URL',
+    'Status'
+]
+const renderBody = (item, index) => (
+    <tr key={index}>
+        <td>{item.id}</td>
+        <td>{item.scanType}</td>
+        <td>{item.targetURL}</td>
+        <td>
+            <Badge type={orderStatus[item.status]} content={item.status}/>
+        </td>
+        <td>{item.highrisks}</td>
+        <td>{item.middlerisks}</td>
+        <td>{item.lowrisks}</td>
+    </tr>
+)
 const orderStatus = {
     "Continuing": "warning",
     "Finished": "success",
@@ -72,7 +78,6 @@ const Dashboard = () => {
                     </div>
                 </div>
                 
-                
                 <div className="col-8">
                     <div className="card">
                         <div className="card__header">
@@ -80,10 +85,10 @@ const Dashboard = () => {
                         </div>
                         <div className="card__body">
                             <Table
-                                headData={latestOrders.header}
-                                renderHead={(item, index) => renderOrderHead(item, index)}
-                                bodyData={latestOrders.body}
-                                renderBody={(item, index) => renderOrderBody(item, index)}
+                                headData={latestScanHead}
+                                renderHead={(item, index) => renderHead(item, index)}
+                                bodyData={lastScanList}
+                                renderBody={(item, index) => renderBody(item, index)}
                             />
                         </div>
                     </div>

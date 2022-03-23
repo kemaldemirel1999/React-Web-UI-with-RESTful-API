@@ -17,13 +17,15 @@ public class ZAPScanResult {
     private int spider_id;
     private String targetURL;
     private String result;
+    private String scanType;
 
-    public ZAPScanResult(String id, int spider_id, String url, String result)
+    public ZAPScanResult(String id, int spider_id, String url, String result, String scanType)
     {
         this.id = id;
         this.spider_id = spider_id;
         this.targetURL = url;
         this.result = result;
+        this.scanType = scanType;
     }
     public ZAPScanResult(){}
     public void setScanId(String id) {
@@ -49,6 +51,12 @@ public class ZAPScanResult {
     }
     public void setSpider_id(int spider_id){
         this.spider_id = spider_id;
+    }
+    public String getScanType(){
+        return scanType;
+    }
+    public void setScanType(String scanType){
+        this.scanType = scanType;
     }
 
     @Override

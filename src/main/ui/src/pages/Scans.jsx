@@ -2,9 +2,7 @@ import React from 'react'
 import Badge from '../components/badge/Badge'
 import Table from '../components/table/Table'
 
-import customerList from '../assets/JsonData/customers-list.json'
-import { getAllUsers, createUser } from '../service/ScanService'
-
+import scanList from '../assets/JsonData/scan-list.json'
 
 
 
@@ -54,7 +52,7 @@ const Scans = () => {
                                 limit='10'
                                 headData={scanTableHead}
                                 renderHead={(item, index) => renderHead(item, index)}
-                                bodyData={customerList}
+                                bodyData={scanList}
                                 renderBody={(item, index) => renderBody(item, index)}
                             />
                         </div>

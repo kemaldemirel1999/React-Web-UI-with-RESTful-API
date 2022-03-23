@@ -34,7 +34,9 @@ public class ZAPScanResultController {
     private int scanIDCounter = 0;
     // When database is clear, new tuple is created with id:0 to save scanIdCounter for later attacks.
     private boolean databaseChecked = false;
-
+    private  int ZAP_PORT = 8091;
+    private  String ZAP_API_KEY = "hc9fl5vmd1bsmoc0qo2u8hjn7c";
+    private  String ZAP_ADDRESS = "localhost";
 
     //  Before we doing any operations, OWASPZAP is executed in the background.
     public ZAPScanResultController() {
@@ -50,21 +52,60 @@ public class ZAPScanResultController {
         }
     }
 
+
+//    public void changeSettings(int port, String api_key, String zap_adress){
+//        this.ZAP_PORT = port;
+//        this.ZAP_API_KEY = api_key;
+//        this.ZAP_ADDRESS = zap_adress;
+//    }
+
+
+//    public void changeSettings(boolean isItActiveScan, String url){
+//        ExecuteBashCommand cmd = new ExecuteBashCommand();
+//        if(isItActiveScan){
+//            String command = "curl -X POST localhost:8080/api/create-scan/active -H 'Content-type:application/json' -d '"+url+"'";
+//            cmd.executeCommand(command);
+//        }else{
+//            String command = "curl -X POST localhost:8080/api/create-scan/passive -H 'Content-type:application/json' -d '"+url+"'";
+//            cmd.executeCommand(command);
+//        }
+//    }
+
     @GetMapping("scans")
-    public void getAllScans(){
+    public void refreshAllScans(){
         List<ZAPScanResult> results = new ArrayList<>();
         results.addAll(zapScanService.findAll());
-        for(ZAPScanResult zapScanResult : results) {
-            JsonObject json = new JsonObject(zapScanResult.toString());
-            System.out.println(json.toString());
+        PrintWriter outputStream = null;
+        PrintWriter lastScanOutputStream = null;
+        try{
+            outputStream = new PrintWriter("/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/ui/src/assets/JsonData/scan-list.json");
+            lastScanOutputStream = new PrintWriter("/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/ui/src/assets/JsonData/last-scan-list.json");
+            lastScanOutputStream.print("[");
+            outputStream.print("[");
+            for(int i=0; i<results.size(); i++) {
+                if( i == 0) continue;
+                ZAPScanResult zapScanResult = results.get(i);
+                String addingScan = "{\"id\":"+zapScanResult.getScanId()+",\"scanType\":\""+zapScanResult.getScanType()+"\",\"targetURL\":\""+zapScanResult.getUrl()+"\",\"status\":";
+                if(zapScanResult.getResult().isEmpty()){
+                    addingScan = addingScan + "\"Continuing\",";
+                }else{
+                    addingScan = addingScan + "\"Finished\",";
+                }
+                addingScan = addingScan + "\"highrisks\":0," + "\"middlerisks\":0," + "\"lowrisks\":0}";
+                if( i != results.size()-1){
+                    addingScan = addingScan + ",";
+                }else{
+                    lastScanOutputStream.println(addingScan);
+                }
+                outputStream.println(addingScan);
+            }
+            outputStream.print("]");
+            lastScanOutputStream.print("]");
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        //System.out.print(zapScanService.findAll());
-//        PrintWriter outputStream = null;
-//        try{
-//            outputStream = new PrintWriter()
-//        }catch (Exception e){
-//
-//        }
+        outputStream.close();
+        lastScanOutputStream.close();
     }
 
 
@@ -81,7 +122,7 @@ public class ZAPScanResultController {
         ZAPScanResult zapScanResult;
         try{
             zapScanResult = zapScanService.getZAPScanResultById(String.valueOf(id)).get();
-            if(zapScanResult.getResult().isEmpty()){
+            if(zapScanResult.getResult().isEmpty() && zapScanResult.getScanType().equals("Passive") ){
                 Spider s = spiders.get(id);
                 if(s == null){
                     new NoSuchElementException("Spider is null");
@@ -89,13 +130,31 @@ public class ZAPScanResultController {
                 // If passive scan not executed yet, this block is executed
                 else if(s.getPassiveScanNumberOfRecords() == -1){
                     return new ResponseEntity<>(
-                            "Number of records left for scanning : UNKNOWN", HttpStatus.OK
+                            "Number of records left for Passive Scanning : UNKNOWN", HttpStatus.OK
                     );
                 }
                 // Shows us the number of recoreds left for scanning
                 else{
                     return new ResponseEntity<>(
-                            "Number of records left for scanning : " + s.getPassiveScanNumberOfRecords()+"\n", HttpStatus.OK
+                            "Number of records left for Passive Scanning : " + s.getPassiveScanNumberOfRecords()+"\n", HttpStatus.OK
+                    );
+                }
+            }
+            else if(zapScanResult.getResult().isEmpty() && zapScanResult.getScanType().equals("Active")){
+                Spider s = spiders.get(id);
+                if(s == null){
+                    new NoSuchElementException("Spider is null");
+                }
+                // If passive scan not executed yet, this block is executed
+                else if(s.getActiveScanProgress() == -1){
+                    return new ResponseEntity<>(
+                            "Progress for Active Scanning : UNKNOWN", HttpStatus.OK
+                    );
+                }
+                // Shows us the number of recoreds left for scanning
+                else{
+                    return new ResponseEntity<>(
+                            "Progress for Active Scanning : " + s.getActiveScanProgress()+"\n", HttpStatus.OK
                     );
                 }
             }
@@ -126,12 +185,13 @@ public class ZAPScanResultController {
         try{
             ZAPScanResult zapScanResult = zapScanService.getZAPScanResultById(String.valueOf(id)).get();
             Spider s = spiders.get(id);
-            zapScanResult.setResult(s.getPassiveScanResults());
+            zapScanResult.setResult(s.getResults());
             zapScanResult.setSpider_id(Integer.parseInt( s.getSpiderID() ));
             addZAPScanResultToDatabase(zapScanResult);
         }catch (NoSuchElementException e){
             e.printStackTrace();
         }
+        refreshAllScans();
     }
 
     // With this DELETE request, database is cleared.
@@ -143,6 +203,7 @@ public class ZAPScanResultController {
         for( ZAPScanResult z : zapScanService.findAll()){
             System.out.println(z);
         }
+        refreshAllScans();
     }
 
     // With this GET request, related thread is stopped.
@@ -157,8 +218,8 @@ public class ZAPScanResultController {
 
     // With the help of this POST request, new attack is started to the given website.
     // This method returns, this attack's id and targetURL
-    @PostMapping(value = "/create-scan")
-    public ResponseEntity<String> scan(@RequestBody String newTarget){
+    @PostMapping(value = "/create-scan/passive")
+    public ResponseEntity<String> PassiveScan(@RequestBody String newTarget){
         // This block is only executed when first POST request is happened.
         // We can reach scanIdCounter data and updates it's value with our global variable.
         if(!databaseChecked){
@@ -166,7 +227,7 @@ public class ZAPScanResultController {
                 ZAPScanResult zapScanResult = zapScanService.getZAPScanResultById("0").get();
                 scanIDCounter = Integer.parseInt(String.valueOf(zapScanResult.getSpider_id()));
             }catch (NoSuchElementException e){
-                addZAPScanResultToDatabase(new ZAPScanResult("0",0,"nothing","id_counter"));
+                addZAPScanResultToDatabase(new ZAPScanResult("0",0,"nothing","id_counter","none"));
                 System.out.println("id_counter is added to database");
             }
             databaseChecked = true;
@@ -182,6 +243,9 @@ public class ZAPScanResultController {
         }
         Spider spider = new Spider();
         spider.setScanID(String.valueOf(scanIDCounter));
+        spider.setZAP_API_KEY(this.ZAP_API_KEY);
+        spider.setZAP_ADDRESS(this.ZAP_ADDRESS);
+        spider.setZAP_PORT(this.ZAP_PORT);
         spider.setTARGET(newTarget);
         spiders.put(scanIDCounter, spider);
         /*
@@ -189,11 +253,64 @@ public class ZAPScanResultController {
             PassiveScan result will be written when attack is finished.
             Related tuple is called and will be updated.
         */
-        addZAPScanResultToDatabase(new ZAPScanResult(spider.getScanID(), scanIDCounter-1, spider.getTARGET(), "") );
+        addZAPScanResultToDatabase(new ZAPScanResult(spider.getScanID(), scanIDCounter-1, spider.getTARGET(), "", "Passive") );
+        refreshAllScans();
         //  Spider thread is started and runs in the background.
+        spider.setIsItActiveScan(false);
         spider.start();
         return new ResponseEntity<>(
-                "Id:"+scanIDCounter+", targetURL:"+newTarget+"\n", HttpStatus.OK
+                "Id:"+scanIDCounter+", Passive Scan, targetURL:"+newTarget+"\n", HttpStatus.OK
+        );
+    }
+
+
+
+
+
+    // With the help of this POST request, new attack is started to the given website.
+    // This method returns, this attack's id and targetURL
+    @PostMapping(value = "/create-scan/active")
+    public ResponseEntity<String> ActiveScan(@RequestBody String newTarget){
+        // This block is only executed when first POST request is happened.
+        // We can reach scanIdCounter data and updates it's value with our global variable.
+        if(!databaseChecked){
+            try {
+                ZAPScanResult zapScanResult = zapScanService.getZAPScanResultById("0").get();
+                scanIDCounter = Integer.parseInt(String.valueOf(zapScanResult.getSpider_id()));
+            }catch (NoSuchElementException e){
+                addZAPScanResultToDatabase(new ZAPScanResult("0",0,"nothing","id_counter","Active"));
+                System.out.println("id_counter is added to database");
+            }
+            databaseChecked = true;
+        }
+        scanIDCounter++;// id is incremented for new attack
+        // Incremented scanId is saved to database for later attacks.
+        try{
+            ZAPScanResult id_counter = zapScanService.getZAPScanResultById("0").get();
+            id_counter.setSpider_id(scanIDCounter);
+            addZAPScanResultToDatabase(id_counter);
+        }catch (NoSuchElementException e){
+            e.printStackTrace();
+        }
+        Spider spider = new Spider();
+        spider.setScanID(String.valueOf(scanIDCounter));
+        spider.setZAP_API_KEY(this.ZAP_API_KEY);
+        spider.setZAP_ADDRESS(this.ZAP_ADDRESS);
+        spider.setZAP_PORT(this.ZAP_PORT);
+        spider.setTARGET(newTarget);
+        spiders.put(scanIDCounter, spider);
+        /*
+            Spider and PassiveScan may take time and before we run them, we save all of the data except activeScan result.
+            ActiveScan result will be written when attack is finished.
+            Related tuple is called and will be updated.
+        */
+        addZAPScanResultToDatabase(new ZAPScanResult(spider.getScanID(), scanIDCounter-1, spider.getTARGET(), "", "Active") );
+        refreshAllScans();
+        //  Spider thread is started and runs in the background.
+        spider.setIsItActiveScan(true);
+        spider.start();
+        return new ResponseEntity<>(
+                "Id:"+scanIDCounter+", Active Scan, targetURL:"+newTarget+"\n", HttpStatus.OK
         );
     }
 }

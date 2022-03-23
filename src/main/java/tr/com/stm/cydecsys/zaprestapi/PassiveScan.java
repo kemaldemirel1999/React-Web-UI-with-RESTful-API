@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 public class PassiveScan{
 
-    private int ZAP_PORT = 8090;
+    private int ZAP_PORT = 8091;
     private String ZAP_API_KEY = "hc9fl5vmd1bsmoc0qo2u8hjn7c";
     private String ZAP_ADDRESS = "localhost";
     // Represents number of records left for scanning.
@@ -28,13 +28,14 @@ public class PassiveScan{
 
     public String runPassiveScan() {
         ClientApi api = new ClientApi(ZAP_ADDRESS, ZAP_PORT, ZAP_API_KEY);
+        System.out.println("Passive Scanning Target");
         try {
             while (true) {
                 Thread.sleep(2000);
                 api.pscan.recordsToScan();
                 numberOfRecords = Integer.parseInt(((ApiResponseElement) api.pscan.recordsToScan()).getValue());
                 if (numberOfRecords == 0) {
-                    // We cam finish scan.
+                    // We can finish scan.
                     break;
                 }
             }
