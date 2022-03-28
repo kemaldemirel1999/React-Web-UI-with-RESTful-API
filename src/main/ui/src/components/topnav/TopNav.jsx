@@ -30,7 +30,7 @@ const renderUserToggle = (user) => (
 )
 
 const renderUserMenu =(item, index) => (
-    <Link to='/' key={index}>
+    <Link to='/settings' key={index}>
         <div className="notification-item">
             <i className={item.icon}></i>
             <span>{item.content}</span>
@@ -38,12 +38,47 @@ const renderUserMenu =(item, index) => (
     </Link>
 )
 
+
+
+
 const Topnav = () => {
+
+    const initialFormData = Object.freeze({
+        scanId: "",
+    });
+
+    const [formData, updateFormData] = React.useState(initialFormData);
+
+    const handleChange = (e) => {
+        updateFormData({
+            ...formData,
+
+            // Trimming any whitespace
+            [e.target.name]: e.target.value.trim()
+        });
+    };
+
+    const handlePress = (e) => {
+        if(e.key == 'Enter'){
+            console.log(formData.scanId)
+            fetch("http://localhost:8080/api/search-by-id",{
+                method: "POST",
+                headers:{"Content-Type":"application/json" },
+                body: JSON.stringify(formData.scanId)
+            }).then( () =>{
+                    console.log("Search is called")
+                }
+            )
+        }
+    }
+
     return (
         <div className='topnav'>
             <div className="topnav__search">
-                <input type="text" placeholder='Search By Scan Id' />
-                <i className='bx bx-search'></i>
+                <input type="text" name="scanId" placeholder='Search Details By Scan Id'  onChange={handleChange} onKeyPress={handlePress}/>
+                {/*<Link to={"./Results"} >*/}
+                {/*    Search*/}
+                {/*</Link>*/}
             </div>
             <div className="topnav__right">
                 <div className="topnav__right-item">

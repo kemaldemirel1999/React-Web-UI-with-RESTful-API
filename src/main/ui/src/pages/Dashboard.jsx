@@ -18,7 +18,10 @@ const latestScanHead = [
     'ID',
     'Scan Type',
     'Target URL',
-    'Status'
+    'Status',
+    'High Risks',
+    'Middle Risks',
+    'Low Risks'
 ]
 const renderBody = (item, index) => (
     <tr key={index}>

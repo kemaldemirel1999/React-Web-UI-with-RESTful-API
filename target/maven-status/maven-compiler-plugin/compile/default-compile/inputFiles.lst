@@ -1,9 +1,11 @@
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/repository/ZAPRepository.java
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/services/ZAPScanService.java
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/controller/ZAPScanResultController.java
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/Spider.java
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.java
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZapRestApiApplication.java
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/PassiveScan.java
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/model/ZAPScanResult.java
-/home/staj/IdeaProjects/ZAPRestAPI/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZAPDaemon.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZapRestApiApplication.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/services/ZAPScanService.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/Parser.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/repository/ZAPRepository.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/model/ZAPScanResult.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/controller/ZAPScanResultController.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZAPDaemon.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/PassiveScan.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/ActiveScan.java
+/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/java/tr/com/stm/cydecsys/zaprestapi/Spider.java

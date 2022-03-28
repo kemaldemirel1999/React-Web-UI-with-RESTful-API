@@ -1,46 +1,69 @@
 import React from 'react'
 import "../components/startscan/Startscan.css";
 
-import ScanService from '../service/ScanService'
-
-// const createUser = (e) => {
-//     createUser(this.state.user)
-//         .then(response => {
-//             console.log(response);
-//             this.setState({numberOfUsers: this.state.numberOfUsers + 1})
-//         });
-//     this.setState({user: {}})
-// }
-//
-// const getAllUsers = () => {
-//     getAllUsers()
-//         .then(users => {
-//             console.log(users)
-//             this.setState({users: users, numberOfUsers: users.length})
-//         });
-// }
-
-
 
 const Startscan = () => {
+
+
+    const initialFormData = Object.freeze({
+        isItActiveScan: "",
+        targetUrl: ""
+    });
+
+    const [formData, updateFormData] = React.useState(initialFormData);
+
+    const handleChange = (e) => {
+        updateFormData({
+            ...formData,
+
+            // Trimming any whitespace
+            [e.target.name]: e.target.value.trim()
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(formData);
+        if(formData.isItActiveScan.endsWith("yes")){
+            fetch("http://localhost:8080/api/create-scan/active",{
+                method: "POST",
+                headers:{"Content-Type":"application/json" },
+                body: JSON.stringify(formData.targetUrl)
+            }).then( () =>{
+                    console.log("New Scan Added")
+                }
+            )
+        }
+        else {
+            fetch("http://localhost:8080/api/create-scan/passive",{
+                method: "POST",
+                headers:{"Content-Type":"application/json" },
+                body: JSON.stringify(formData.targetUrl)
+            }).then( () =>{
+                    console.log("New Scan Added")
+                }
+            )
+        }
+    };
+
 
     return (
         <div className="newScan">
       <h1 className="newUserTitle">New Scan</h1>
-      <form className="newScanForm">
+      <form className="newScanForm" >
         <div className="newUserItem">
             <div className="newUserItem">
             <label>Choose Scan Type</label>
-            <select className="newUserSelect" name="active" id="active">
-                <option value="yes">Passive Scan</option>
-                <option value="no">Active Scan</option>
+            <select className="newUserSelect" onChange={handleChange} name="isItActiveScan" >
+                <option name="isItActiveScan" onChange={handleChange} value="yes">Active Scan</option>
+                <option name="isItActiveScan" onChange={handleChange} value="no">Passive Scan</option>
             </select>
             </div>
             <div className="newUserItem">
             <label>Target URL</label>
-                <input type="text" placeholder="https://example.com.tr" />
+                <input name="targetUrl" placeholder="https://example.com.tr" onChange={handleChange}/>
             </div>
-        <button className="newUserButton">Start Scan</button>
+            <button onClick={handleSubmit} className="newScanButton" >Start Scan</button>
         </div>
       </form>
     </div>

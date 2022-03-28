@@ -1,0 +1,1 @@
+[{ "result": "<?xml version=\"1.0\"?>\n<OWASPZAPReport version=\"2.11.1\" generated=\"Wed, 23 Mar 2022 10:07:18\">\n    \n        <site name=\"http://www.tiktok.com\" host=\"www.tiktok.com\" port=\"80\" ssl=\"false\">\n            <alerts>\n                \n            </alerts>\n        </site>\n    \n</OWASPZAPReport>"}]

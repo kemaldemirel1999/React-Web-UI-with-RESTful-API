@@ -1,6 +1,7 @@
 tr/com/stm/cydecsys/zaprestapi/services/ZAPScanService.class
 tr/com/stm/cydecsys/zaprestapi/repository/ZAPRepository.class
 tr/com/stm/cydecsys/zaprestapi/ZapRestApiApplication.class
+tr/com/stm/cydecsys/zaprestapi/ActiveScan.class
 tr/com/stm/cydecsys/zaprestapi/model/ZAPScanResult.class
 tr/com/stm/cydecsys/zaprestapi/ZAPDaemon.class
 tr/com/stm/cydecsys/zaprestapi/controller/ZAPScanResultController.class
