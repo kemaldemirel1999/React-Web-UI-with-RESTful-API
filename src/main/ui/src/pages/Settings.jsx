@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const Settings = () => {
 
@@ -8,6 +8,7 @@ const Settings = () => {
         apiKey: "",
         zapAdress: ""
     });
+    const history = useHistory();
 
     const [formData, updateFormData] = React.useState(initialFormData);
 
@@ -29,6 +30,7 @@ const Settings = () => {
             body: JSON.stringify(formData.portNumber + " " + formData.apiKey + " " + formData.zapAdress)
         }).then( () =>{
                 console.log("New settings applied")
+            history.push("/")
             }
         )
     };

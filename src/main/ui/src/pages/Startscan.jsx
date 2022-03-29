@@ -1,5 +1,6 @@
 import React from 'react'
 import "../components/startscan/Startscan.css";
+import {useHistory} from "react-router-dom";
 
 
 const Startscan = () => {
@@ -9,6 +10,7 @@ const Startscan = () => {
         isItActiveScan: "",
         targetUrl: ""
     });
+    const history = useHistory();
 
     const [formData, updateFormData] = React.useState(initialFormData);
 
@@ -31,6 +33,7 @@ const Startscan = () => {
                 body: JSON.stringify(formData.targetUrl)
             }).then( () =>{
                     console.log("New Scan Added")
+                    history.push("/")
                 }
             )
         }
@@ -41,6 +44,7 @@ const Startscan = () => {
                 body: JSON.stringify(formData.targetUrl)
             }).then( () =>{
                     console.log("New Scan Added")
+                    history.push("/")
                 }
             )
         }

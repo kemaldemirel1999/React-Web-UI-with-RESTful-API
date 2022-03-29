@@ -56,7 +56,6 @@ public class ZAPScanResultController {
 
     @GetMapping("update-failed-scans")
     public void updateFailedScan() {
-        System.out.println("Working update failed scans");
         List<ZAPScanResult> results = new ArrayList<>();
         results.addAll(zapScanService.findAll());
         for (int i = 1; i < results.size(); i++) {
@@ -74,7 +73,6 @@ public class ZAPScanResultController {
 
     @GetMapping("status")
     public void refreshStatus() {
-        System.out.println("Status Working");
         List<ZAPScanResult> results = new ArrayList<>();
         results.addAll(zapScanService.findAll());
         PrintWriter outputStream = null;
@@ -244,10 +242,10 @@ public class ZAPScanResultController {
             zapScanResult.setResult(s.getResults());
             zapScanResult.setSpider_id(Integer.parseInt(s.getSpiderID()));
             addZAPScanResultToDatabase(zapScanResult);
-            OwaspXMLParser parser = new OwaspXMLParser();
-            WebScannerResult webScannerResult = parser.parseOwaspReport(zapScanResult.getResult());
-            List<WebScannerSingleResult> webScannerSingleResults = webScannerResult.getResultItems();
-            System.out.println(webScannerSingleResults.get(0));
+//            OwaspXMLParser parser = new OwaspXMLParser();
+//            WebScannerResult webScannerResult = parser.parseOwaspReport(zapScanResult.getResult());
+//            List<WebScannerSingleResult> webScannerSingleResults = webScannerResult.getResultItems();
+//            System.out.println(webScannerSingleResults.get(0));
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
@@ -356,7 +354,6 @@ public class ZAPScanResultController {
             result = result.replaceAll("\"", "\\\\\"");
             result = result.replaceAll("\n", "\\\\n");
             result = result.replaceAll("\t", "    ");
-            System.out.println(result);
             outputStream = new PrintWriter("/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/ui/src/assets/JsonData/result-list.json");
             outputStream.print("[{ \"result\": \"" + result + "\"");
             outputStream.print("}]");

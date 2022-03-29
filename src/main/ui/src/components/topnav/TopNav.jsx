@@ -2,7 +2,7 @@ import React from 'react'
 
 import './topnav.css'
 
-import { Link } from 'react-router-dom'
+import { Link , useHistory} from 'react-router-dom'
 
 import Dropdown from '../dropdown/Dropdown'
 
@@ -47,6 +47,8 @@ const Topnav = () => {
         scanId: "",
     });
 
+    const history = useHistory();
+
     const [formData, updateFormData] = React.useState(initialFormData);
 
     const handleChange = (e) => {
@@ -59,6 +61,7 @@ const Topnav = () => {
     };
 
     const handlePress = (e) => {
+
         if(e.key == 'Enter'){
             console.log(formData.scanId)
             fetch("http://localhost:8080/api/search-by-id",{
@@ -69,6 +72,7 @@ const Topnav = () => {
                     console.log("Search is called")
                 }
             )
+            history.push("/results")
         }
     }
 
@@ -76,9 +80,7 @@ const Topnav = () => {
         <div className='topnav'>
             <div className="topnav__search">
                 <input type="text" name="scanId" placeholder='Search Details By Scan Id'  onChange={handleChange} onKeyPress={handlePress}/>
-                {/*<Link to={"./Results"} >*/}
-                {/*    Search*/}
-                {/*</Link>*/}
+
             </div>
             <div className="topnav__right">
                 <div className="topnav__right-item">
