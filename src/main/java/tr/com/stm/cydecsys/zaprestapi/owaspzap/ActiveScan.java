@@ -1,4 +1,4 @@
-package tr.com.stm.cydecsys.zaprestapi;
+package tr.com.stm.cydecsys.zaprestapi.owaspzap;
 
 import org.zaproxy.clientapi.core.ApiResponse;
 import org.zaproxy.clientapi.core.ApiResponseElement;

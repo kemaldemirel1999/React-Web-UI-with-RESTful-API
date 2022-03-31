@@ -42,20 +42,7 @@ const orderStatus = {
     "Failed": "danger"
 }
 
-const renderOrderHead = (item, index) => (
-    <th key={index}>{item}</th>
-)
 
-const renderOrderBody = (item, index) => (
-    <tr key={index}>
-        <td>{item.id}</td>
-        <td>{item.scantype}</td>
-        <td>{item.targeturl}</td>
-        <td>
-            <Badge type={orderStatus[item.status]} content={item.status}/>
-        </td>
-    </tr>
-)
 
 const Dashboard = () => {
 

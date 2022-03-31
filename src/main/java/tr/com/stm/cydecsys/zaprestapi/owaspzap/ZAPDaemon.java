@@ -1,4 +1,6 @@
-package tr.com.stm.cydecsys.zaprestapi;
+package tr.com.stm.cydecsys.zaprestapi.owaspzap;
+
+import tr.com.stm.cydecsys.zaprestapi.ExecuteBashCommand;
 
 import java.util.Scanner;
 

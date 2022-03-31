@@ -1,12 +1,11 @@
-package tr.com.stm.cydecsys.zaprestapi;
+package tr.com.stm.cydecsys.zaprestapi.owaspzap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.zaproxy.clientapi.core.ApiResponse;
 import org.zaproxy.clientapi.core.ApiResponseElement;
 import org.zaproxy.clientapi.core.ApiResponseList;
 import org.zaproxy.clientapi.core.ClientApi;
-import tr.com.stm.cydecsys.zaprestapi.controller.ZAPScanResultController;
-import tr.com.stm.cydecsys.zaprestapi.model.ZAPScanResult;
+import tr.com.stm.cydecsys.zaprestapi.ExecuteBashCommand;
 import tr.com.stm.cydecsys.zaprestapi.repository.ZAPRepository;
 
 

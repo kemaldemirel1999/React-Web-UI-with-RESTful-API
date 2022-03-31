@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tr.com.stm.cydecsys.zaprestapi.*;
 import tr.com.stm.cydecsys.zaprestapi.model.ZAPScanResult;
-import tr.com.stm.cydecsys.zaprestapi.parser.OwaspXMLParser;
-import tr.com.stm.cydecsys.zaprestapi.parser.WebScannerResult;
-import tr.com.stm.cydecsys.zaprestapi.parser.WebScannerSingleResult;
+import tr.com.stm.cydecsys.zaprestapi.owaspzap.Spider;
+import tr.com.stm.cydecsys.zaprestapi.owaspzap.ZAPDaemon;
 import tr.com.stm.cydecsys.zaprestapi.services.ZAPScanService;
 
 import java.io.PrintWriter;
@@ -70,7 +68,10 @@ public class ZAPScanResultController {
         refreshAllScans();
         refreshStatus();
     }
+    @GetMapping(value = "/check-parser/{id}")
+    public void checkParser(@PathVariable String id){
 
+    }
     @GetMapping("status")
     public void refreshStatus() {
         List<ZAPScanResult> results = new ArrayList<>();
@@ -287,6 +288,13 @@ public class ZAPScanResultController {
     @PostMapping(value = "/create-scan/passive")
     public ResponseEntity<String> passiveScan(@RequestBody String newTarget) {
         newTarget = checkUrlValidity(newTarget);
+        System.out.println("NewTArget:"+newTarget);
+        if(newTarget == null){
+            System.out.println("Wrong Url Format");
+            return new ResponseEntity<>(
+                    "Wrong Url Format is Given. Try again"+"\n", HttpStatus.OK
+            );
+        }
         System.out.println("newTarget:" + newTarget);
         // This block is only executed when first POST request is happened.
         // We can reach scanIdCounter data and updates it's value with our global variable.
@@ -333,20 +341,49 @@ public class ZAPScanResultController {
     }
 
     public String checkSearchIdValidity(String givenId) {
-        return givenId.replaceAll("\"", "");
+        givenId = givenId.replaceAll("\"", "");
+        try{
+            int returnId = Integer.parseInt(givenId);
+            return givenId;
+        }catch (NumberFormatException e){
+            return null;
+        }
     }
 
     public String checkUrlValidity(String givenURL) {
-        return givenURL.replaceAll("\"", "");
+        givenURL = givenURL.replaceAll("\"", "");
+        if(givenURL.contains("http://") || givenURL.contains("https://") ){
+            return givenURL;
+        }else{
+            return null;
+        }
     }
 
-    public String checkSettingsInputValidity(String givenSettings) {
-        return givenSettings.replaceAll("\"", "");
+    public ArrayList<String> checkSettingsInputValidity(String givenSettings) {
+        int portNo;
+        String apikey, address;
+        givenSettings.replaceAll("\"", "");
+        String[] settings = givenSettings.split(" ");
+        try{
+            portNo = Integer.parseInt(settings[0]);
+            apikey = settings[1];
+            address = settings[2];
+            ArrayList<String> returnList = new ArrayList<>();
+            returnList.add(String.valueOf(portNo));
+            returnList.add(apikey);
+            returnList.add(address);
+            return returnList;
+        }catch (NumberFormatException e){
+            return null;
+        }
     }
 
     @PostMapping(value = "/search-by-id")
     public void searchById(@RequestBody String searchId) {
         searchId = checkSearchIdValidity(searchId);
+        if (searchId == null){
+            System.out.println("Wrong Id Format is Given");
+        }
         PrintWriter outputStream;
         try {
             Optional<ZAPScanResult> zapScanResult = zapScanService.getZAPScanResultById(searchId);
@@ -358,8 +395,9 @@ public class ZAPScanResultController {
             outputStream.print("[{ \"result\": \"" + result + "\"");
             outputStream.print("}]");
             outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+        catch (Exception e) {
+            System.out.println("Search Id Not Found");
         }
     }
 
@@ -367,18 +405,19 @@ public class ZAPScanResultController {
     public void changeSettings(@RequestBody String newSettings) {
         String apikey, address;
         int portNo;
-        newSettings = checkSettingsInputValidity(newSettings);
+        ArrayList<String> settings = checkSettingsInputValidity(newSettings);
         try {
-            String[] settings = newSettings.split(" ");
-            portNo = Integer.parseInt(settings[0]);
-            apikey = settings[1];
-            address = settings[2];
+            if(settings == null){
+                throw new Exception("Invalid settings input");
+            }
+            portNo = Integer.parseInt(settings.get(0));
+            apikey = settings.get(1);
+            address = settings.get(2);
             System.out.println("portNo:" + portNo + "\napiKey:" + apikey + "\naddress:" + address);
             this.ZAP_PORT = portNo;
             this.ZAP_API_KEY = apikey;
             this.ZAP_ADDRESS = address;
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Invalid settings input");
         }
     }
@@ -388,6 +427,12 @@ public class ZAPScanResultController {
     @PostMapping(value = "/create-scan/active")
     public ResponseEntity<String> activeScan(@RequestBody String newTarget) {
         newTarget = checkUrlValidity(newTarget);
+        if(newTarget == null){
+            System.out.println("Wrong Url Format");
+            return new ResponseEntity<>(
+                    "Wrong Url Format is Given. Try again"+"\n", HttpStatus.OK
+            );
+        }
         System.out.println("newTarget:" + newTarget);
         // This block is only executed when first POST request is happened.
         // We can reach scanIdCounter data and updates it's value with our global variable.

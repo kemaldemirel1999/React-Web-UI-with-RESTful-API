@@ -1,10 +1,10 @@
 [{
         "icon": "bx bx-caret-right-circle",
-        "count":30,
+        "count":34,
         "title": "Total Scan"
     },{
         "icon": "bx bx-meteor",
-        "count":24,
+        "count":28,
         "title": "Number of Passive Scan"
     },{
         "icon": "bx bx-meteor",

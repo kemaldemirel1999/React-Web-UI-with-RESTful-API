@@ -54,8 +54,6 @@ const Topnav = () => {
     const handleChange = (e) => {
         updateFormData({
             ...formData,
-
-            // Trimming any whitespace
             [e.target.name]: e.target.value.trim()
         });
     };

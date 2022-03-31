@@ -29,7 +29,7 @@ const Settings = () => {
             headers:{"Content-Type":"application/json" },
             body: JSON.stringify(formData.portNumber + " " + formData.apiKey + " " + formData.zapAdress)
         }).then( () =>{
-                console.log("New settings applied")
+            console.log("New settings applied")
             history.push("/")
             }
         )
