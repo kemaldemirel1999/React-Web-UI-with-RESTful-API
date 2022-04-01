@@ -38,9 +38,11 @@ public class ZAPScanResultController {
     private int ZAP_PORT = 8090;
     private String ZAP_API_KEY = "hc9fl5vmd1bsmoc0qo2u8hjn7c";
     private String ZAP_ADDRESS = "localhost";
+    private String workingDirectory = "";
 
     //  Before we doing any operations, OWASPZAP is executed in the background.
     public ZAPScanResultController() {
+        workingDirectory = System.getProperty("user.dir");
         if (!ZAPDaemon.isOwaspZapAlive()) {
             zapDaemon = new ZAPDaemon();
             Thread zapDaemonThread = new Thread(zapDaemon, "T1");
@@ -105,7 +107,7 @@ public class ZAPScanResultController {
         results.addAll(zapScanService.findAll());
         PrintWriter outputStream = null;
         try {
-            outputStream = new PrintWriter("/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/ui/src/assets/JsonData/status-card-data.json");
+            outputStream = new PrintWriter(workingDirectory + "/src/main/ui/src/assets/JsonData/status-card-data.json");
             outputStream.print("[");
             int numberOfActiveScan = 0, numberOfPassivesScan = 0, total_scan;
             int highRiskCounter = 0;
@@ -180,8 +182,8 @@ public class ZAPScanResultController {
         PrintWriter outputStream = null;
         PrintWriter lastScanOutputStream = null;
         try {
-            outputStream = new PrintWriter("/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/ui/src/assets/JsonData/scan-list.json");
-            lastScanOutputStream = new PrintWriter("/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/ui/src/assets/JsonData/last-scan-list.json");
+            outputStream = new PrintWriter(workingDirectory + "/src/main/ui/src/assets/JsonData/scan-list.json");
+            lastScanOutputStream = new PrintWriter(workingDirectory + "/src/main/ui/src/assets/JsonData/last-scan-list.json");
             lastScanOutputStream.print("[");
             outputStream.print("[");
             for (int i = 0; i < results.size(); i++) {
@@ -441,7 +443,7 @@ public class ZAPScanResultController {
             result = result.replaceAll("\"", "\\\\\"");
             result = result.replaceAll("\n", "\\\\n");
             result = result.replaceAll("\t", "    ");
-            outputStream = new PrintWriter("/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/ui/src/assets/JsonData/result-list.json");
+            outputStream = new PrintWriter(workingDirectory + "/src/main/ui/src/assets/JsonData/result-list.json");
             outputStream.print("[{ \"result\": \"" + result + "\"");
             outputStream.print("}]");
             outputStream.close();

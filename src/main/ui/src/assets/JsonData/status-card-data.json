@@ -1,10 +1,10 @@
 [{
         "icon": "bx bx-caret-right-circle",
-        "count":9,
+        "count":14,
         "title": "Total Scan"
     },{
         "icon": "bx bx-meteor",
-        "count":8,
+        "count":13,
         "title": "Number of Passive Scan"
     },{
         "icon": "bx bx-meteor",
@@ -16,10 +16,10 @@
         "title": "High Risk Rate"
     },{
         "icon": "bx bx-error",
-        "count":"%75.6",
+        "count":"%75.4",
         "title": "Middle Risk Rate"
     },{
         "icon": "bx bx-error",
-        "count":"%24.4",
+        "count":"%24.6",
         "title": "Low Risk Rate"
     }]

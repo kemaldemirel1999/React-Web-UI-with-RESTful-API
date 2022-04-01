@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="164dd16d-8983-4b2d-bdb8-7af63531d6b2" name="Changes" comment="No database">
+      <change afterPath="$PROJECT_DIR$/runProject.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ui/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/node_modules/.cache/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/last-scan-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/last-scan-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/result-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/result-list.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/scan-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/scan-list.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/status-card-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/status-card-data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ui/src/pages/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/pages/Settings.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ZAPRestAPI-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ZAPRestAPI-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +126,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="runProject.sh" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/runProject.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="ZapRestApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ZAPRestAPI" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="tr.com.stm.cydecsys.zaprestapi.ZapRestApiApplication" />
@@ -138,6 +150,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Shell Script.runProject.sh" />
         <item itemvalue="Application.ZapRestApiApplication" />
         <item itemvalue="Application.Alerts" />
         <item itemvalue="Application.Spider" />
@@ -176,6 +189,9 @@
       <workItem from="1644560567660" duration="10443000" />
       <workItem from="1644841704443" duration="26454000" />
       <workItem from="1648810224250" duration="358000" />
+      <workItem from="1648810604586" duration="1564000" />
+      <workItem from="1648812244676" duration="1127000" />
+      <workItem from="1648813694582" duration="168000" />
     </task>
     <task id="LOCAL-00001" summary="No database">
       <created>1644393691967</created>

@@ -1,1 +1,1 @@
-[{ "result": ""}]
+[{ "result": "<?xml version=\"1.0\"?>\n<OWASPZAPReport version=\"2.11.1\" generated=\"Fri, 1 Apr 2022 13:55:35\">\n    \n        <site name=\"http://www.facebook.com\" host=\"www.facebook.com\" port=\"80\" ssl=\"false\">\n            <alerts>\n                \n            </alerts>\n        </site>\n    \n</OWASPZAPReport>"}]
