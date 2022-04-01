@@ -1,12 +1,14 @@
 package tr.com.stm.cydecsys.zaprestapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.com.stm.cydecsys.zaprestapi.model.ZAPScanResult;
 import tr.com.stm.cydecsys.zaprestapi.owaspzap.Spider;
 import tr.com.stm.cydecsys.zaprestapi.owaspzap.ZAPDaemon;
+import tr.com.stm.cydecsys.zaprestapi.parser.*;
 import tr.com.stm.cydecsys.zaprestapi.services.ZAPScanService;
 
 import java.io.PrintWriter;
@@ -68,10 +70,35 @@ public class ZAPScanResultController {
         refreshAllScans();
         refreshStatus();
     }
-    @GetMapping(value = "/check-parser/{id}")
-    public void checkParser(@PathVariable String id){
 
+    public ArrayList<Integer> riskLevelParser(String result) {
+        try {
+            OwaspXMLParser owaspXMLParser = new OwaspXMLParser();
+            WebScannerResult webScannerResult = owaspXMLParser.parseOwaspReport(result);
+            List<WebScannerSingleResult> webScannerSingleResults = webScannerResult.getResultItems();
+            int lowCounter = 0;
+            int middleCounter = 0;
+            int highCounter = 0;
+            for (WebScannerSingleResult w : webScannerSingleResults) {
+                if (w.getSeverity().equals("Low")) {
+                    lowCounter++;
+                } else if (w.getSeverity().equals("Medium")) {
+                    middleCounter++;
+                } else if (w.getSeverity().equals("High")) {
+                    highCounter++;
+                }
+            }
+            ArrayList<Integer> resultList = new ArrayList<>();
+            resultList.add(lowCounter);
+            resultList.add(middleCounter);
+            resultList.add(highCounter);
+            return resultList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
+
     @GetMapping("status")
     public void refreshStatus() {
         List<ZAPScanResult> results = new ArrayList<>();
@@ -81,10 +108,31 @@ public class ZAPScanResultController {
             outputStream = new PrintWriter("/home/staj/Desktop/OwaspZAP Rest Application/owaspzap/src/main/ui/src/assets/JsonData/status-card-data.json");
             outputStream.print("[");
             int numberOfActiveScan = 0, numberOfPassivesScan = 0, total_scan;
+            int highRiskCounter = 0;
+            int mediumRiskCounter = 0;
+            int lowRiskCounter = 0;
+            int totalNumberOfRisk;
             for (int i = 1; i < results.size(); i++) {
                 ZAPScanResult zapScanResult = results.get(i);
                 if (zapScanResult.getScanType().equals("Active")) numberOfActiveScan++;
                 else if (zapScanResult.getScanType().equals("Passive")) numberOfPassivesScan++;
+                highRiskCounter += zapScanResult.getHighRisk();
+                mediumRiskCounter += zapScanResult.getMediumRisk();
+                lowRiskCounter += zapScanResult.getLowRisk();
+            }
+            totalNumberOfRisk = highRiskCounter + mediumRiskCounter + lowRiskCounter;
+            double highRiskRate;
+            double mediumRiskRate;
+            double lowRiskRate;
+            if(totalNumberOfRisk == 0){
+                highRiskRate = 0;
+                mediumRiskRate = 0;
+                lowRiskRate = 0;
+            }
+            else{
+                highRiskRate = ( (double)highRiskCounter / (double)totalNumberOfRisk ) * 100;
+                mediumRiskRate = ( (double)mediumRiskCounter / (double)totalNumberOfRisk ) * 100;
+                lowRiskRate = ( (double)lowRiskCounter / (double)totalNumberOfRisk ) * 100;
             }
             total_scan = numberOfActiveScan + numberOfPassivesScan;
             outputStream.print("{\n" +
@@ -104,17 +152,17 @@ public class ZAPScanResultController {
                     "    },");
             outputStream.print("{\n" +
                     "        \"icon\": \"bx bx-error\",\n" +
-                    "        \"count\":" + 0 + ",\n" +
+                    "        \"count\":\"%" + String.format("%.1f", highRiskRate) + "\",\n" +
                     "        \"title\": \"High Risk Rate\"\n" +
                     "    },");
             outputStream.print("{\n" +
                     "        \"icon\": \"bx bx-error\",\n" +
-                    "        \"count\":" + 0 + ",\n" +
+                    "        \"count\":\"%" + String.format("%.1f", mediumRiskRate) + "\",\n" +
                     "        \"title\": \"Middle Risk Rate\"\n" +
                     "    },");
             outputStream.print("{\n" +
                     "        \"icon\": \"bx bx-error\",\n" +
-                    "        \"count\":" + 0 + ",\n" +
+                    "        \"count\":\"%" + String.format("%.1f", lowRiskRate) + "\",\n" +
                     "        \"title\": \"Low Risk Rate\"\n" +
                     "    }");
             outputStream.print("]");
@@ -140,7 +188,6 @@ public class ZAPScanResultController {
                 if (i == 0) continue;
                 ZAPScanResult zapScanResult = results.get(i);
                 String addingScan = "{\"id\":" + zapScanResult.getScanId() + ",\"scanType\":\"" + zapScanResult.getScanType() + "\",\"targetURL\":\"" + zapScanResult.getUrl() + "\",\"status\":";
-
                 if (zapScanResult.getResult() == null) {
                     addingScan = addingScan + "\"Failed\",";
                 } else if (zapScanResult.getResult().isEmpty()) {
@@ -148,7 +195,7 @@ public class ZAPScanResultController {
                 } else {
                     addingScan = addingScan + "\"Finished\",";
                 }
-                addingScan = addingScan + "\"highrisks\":0," + "\"middlerisks\":0," + "\"lowrisks\":0}";
+                addingScan = addingScan + "\"highrisks\":"+zapScanResult.getHighRisk()+"," + "\"middlerisks\":"+zapScanResult.getMediumRisk()+"," + "\"lowrisks\":"+zapScanResult.getLowRisk()+"}";
                 if (i != results.size() - 1) {
                     addingScan = addingScan + ",";
                 } else {
@@ -242,11 +289,11 @@ public class ZAPScanResultController {
             Spider s = spiders.get(id);
             zapScanResult.setResult(s.getResults());
             zapScanResult.setSpider_id(Integer.parseInt(s.getSpiderID()));
+            ArrayList<Integer> riskList = riskLevelParser(s.getResults());
+            zapScanResult.setLowRisk(riskList.get(0));
+            zapScanResult.setMediumRisk(riskList.get(1));
+            zapScanResult.setHighRisk(riskList.get(2));
             addZAPScanResultToDatabase(zapScanResult);
-//            OwaspXMLParser parser = new OwaspXMLParser();
-//            WebScannerResult webScannerResult = parser.parseOwaspReport(zapScanResult.getResult());
-//            List<WebScannerSingleResult> webScannerSingleResults = webScannerResult.getResultItems();
-//            System.out.println(webScannerSingleResults.get(0));
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
@@ -280,7 +327,11 @@ public class ZAPScanResultController {
     @RequestMapping(value = "/delete/{id}", method = GET)
     @ResponseBody
     public void deleteFromDatabase(@PathVariable String id) {
-        zapScanService.delete(id);
+        try {
+            zapScanService.delete(id);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // With the help of this POST request, new attack is started to the given website.
@@ -288,14 +339,13 @@ public class ZAPScanResultController {
     @PostMapping(value = "/create-scan/passive")
     public ResponseEntity<String> passiveScan(@RequestBody String newTarget) {
         newTarget = checkUrlValidity(newTarget);
-        System.out.println("NewTArget:"+newTarget);
-        if(newTarget == null){
+        System.out.println("NewTArget:" + newTarget);
+        if (newTarget == null) {
             System.out.println("Wrong Url Format");
             return new ResponseEntity<>(
-                    "Wrong Url Format is Given. Try again"+"\n", HttpStatus.OK
+                    "Wrong Url Format is Given. Try again" + "\n", HttpStatus.OK
             );
         }
-        System.out.println("newTarget:" + newTarget);
         // This block is only executed when first POST request is happened.
         // We can reach scanIdCounter data and updates it's value with our global variable.
         if (!databaseChecked) {
@@ -303,7 +353,7 @@ public class ZAPScanResultController {
                 ZAPScanResult zapScanResult = zapScanService.getZAPScanResultById("0").get();
                 scanIDCounter = Integer.parseInt(String.valueOf(zapScanResult.getSpider_id()));
             } catch (NoSuchElementException e) {
-                addZAPScanResultToDatabase(new ZAPScanResult("0", 0, "nothing", "id_counter", "none"));
+                addZAPScanResultToDatabase(new ZAPScanResult("0", 0, "nothing", "id_counter", "none", 0, 0, 0));
                 System.out.println("id_counter is added to database");
             }
             databaseChecked = true;
@@ -329,7 +379,7 @@ public class ZAPScanResultController {
             PassiveScan result will be written when attack is finished.
             Related tuple is called and will be updated.
         */
-        addZAPScanResultToDatabase(new ZAPScanResult(spider.getScanID(), scanIDCounter - 1, spider.getTARGET(), "", "Passive"));
+        addZAPScanResultToDatabase(new ZAPScanResult(spider.getScanID(), scanIDCounter - 1, spider.getTARGET(), "", "Passive" , 0, 0, 0));
         refreshAllScans();
         refreshStatus();
         //  Spider thread is started and runs in the background.
@@ -342,19 +392,19 @@ public class ZAPScanResultController {
 
     public String checkSearchIdValidity(String givenId) {
         givenId = givenId.replaceAll("\"", "");
-        try{
-            int returnId = Integer.parseInt(givenId);
+        try {
+            Integer.parseInt(givenId);
             return givenId;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return null;
         }
     }
 
     public String checkUrlValidity(String givenURL) {
         givenURL = givenURL.replaceAll("\"", "");
-        if(givenURL.contains("http://") || givenURL.contains("https://") ){
+        if (givenURL.contains("http://") || givenURL.contains("https://")) {
             return givenURL;
-        }else{
+        } else {
             return null;
         }
     }
@@ -364,7 +414,7 @@ public class ZAPScanResultController {
         String apikey, address;
         givenSettings.replaceAll("\"", "");
         String[] settings = givenSettings.split(" ");
-        try{
+        try {
             portNo = Integer.parseInt(settings[0]);
             apikey = settings[1];
             address = settings[2];
@@ -373,7 +423,7 @@ public class ZAPScanResultController {
             returnList.add(apikey);
             returnList.add(address);
             return returnList;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return null;
         }
     }
@@ -381,7 +431,7 @@ public class ZAPScanResultController {
     @PostMapping(value = "/search-by-id")
     public void searchById(@RequestBody String searchId) {
         searchId = checkSearchIdValidity(searchId);
-        if (searchId == null){
+        if (searchId == null) {
             System.out.println("Wrong Id Format is Given");
         }
         PrintWriter outputStream;
@@ -395,8 +445,7 @@ public class ZAPScanResultController {
             outputStream.print("[{ \"result\": \"" + result + "\"");
             outputStream.print("}]");
             outputStream.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Search Id Not Found");
         }
     }
@@ -407,7 +456,7 @@ public class ZAPScanResultController {
         int portNo;
         ArrayList<String> settings = checkSettingsInputValidity(newSettings);
         try {
-            if(settings == null){
+            if (settings == null) {
                 throw new Exception("Invalid settings input");
             }
             portNo = Integer.parseInt(settings.get(0));
@@ -427,13 +476,12 @@ public class ZAPScanResultController {
     @PostMapping(value = "/create-scan/active")
     public ResponseEntity<String> activeScan(@RequestBody String newTarget) {
         newTarget = checkUrlValidity(newTarget);
-        if(newTarget == null){
+        if (newTarget == null) {
             System.out.println("Wrong Url Format");
             return new ResponseEntity<>(
-                    "Wrong Url Format is Given. Try again"+"\n", HttpStatus.OK
+                    "Wrong Url Format is Given. Try again" + "\n", HttpStatus.OK
             );
         }
-        System.out.println("newTarget:" + newTarget);
         // This block is only executed when first POST request is happened.
         // We can reach scanIdCounter data and updates it's value with our global variable.
         if (!databaseChecked) {
@@ -441,7 +489,7 @@ public class ZAPScanResultController {
                 ZAPScanResult zapScanResult = zapScanService.getZAPScanResultById("0").get();
                 scanIDCounter = Integer.parseInt(String.valueOf(zapScanResult.getSpider_id()));
             } catch (NoSuchElementException e) {
-                addZAPScanResultToDatabase(new ZAPScanResult("0", 0, "nothing", "id_counter", "Active"));
+                addZAPScanResultToDatabase(new ZAPScanResult("0", 0, "nothing", "id_counter", "Active", 0, 0, 0));
                 System.out.println("id_counter is added to database");
             }
             databaseChecked = true;
@@ -467,7 +515,7 @@ public class ZAPScanResultController {
             ActiveScan result will be written when attack is finished.
             Related tuple is called and will be updated.
         */
-        addZAPScanResultToDatabase(new ZAPScanResult(spider.getScanID(), scanIDCounter - 1, spider.getTARGET(), "", "Active"));
+        addZAPScanResultToDatabase(new ZAPScanResult(spider.getScanID(), scanIDCounter - 1, spider.getTARGET(), "", "Active", 0, 0, 0));
         refreshAllScans();
         refreshStatus();
         //  Spider thread is started and runs in the background.
@@ -477,4 +525,5 @@ public class ZAPScanResultController {
                 "Id:" + scanIDCounter + ", Active Scan, targetURL:" + newTarget + "\n", HttpStatus.OK
         );
     }
+
 }

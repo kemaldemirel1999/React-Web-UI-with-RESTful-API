@@ -1,25 +1,25 @@
 [{
         "icon": "bx bx-caret-right-circle",
-        "count":34,
+        "count":9,
         "title": "Total Scan"
     },{
         "icon": "bx bx-meteor",
-        "count":28,
+        "count":8,
         "title": "Number of Passive Scan"
     },{
         "icon": "bx bx-meteor",
-        "count":6,
+        "count":1,
         "title": "Number of Active Scan"
     },{
         "icon": "bx bx-error",
-        "count":0,
+        "count":"%0.0",
         "title": "High Risk Rate"
     },{
         "icon": "bx bx-error",
-        "count":0,
+        "count":"%75.6",
         "title": "Middle Risk Rate"
     },{
         "icon": "bx bx-error",
-        "count":0,
+        "count":"%24.4",
         "title": "Low Risk Rate"
     }]

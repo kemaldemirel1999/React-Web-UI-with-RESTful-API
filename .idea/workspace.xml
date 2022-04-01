@@ -6,21 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="164dd16d-8983-4b2d-bdb8-7af63531d6b2" name="Changes" comment="No database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZAPRestAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ZAPRestAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/PassiveScan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/PassiveScan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/Spider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/Spider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZAPDaemon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZAPDaemon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZapRestApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/ZapRestApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/controller/ZAPScanResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/controller/ZAPScanResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/model/ZAPScanResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/model/ZAPScanResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/repository/ZAPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/repository/ZAPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/services/ZAPScanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi/services/ZAPScanService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/node_modules/.cache/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/last-scan-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/last-scan-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/scan-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/scan-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/status-card-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/status-card-data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/src/pages/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/pages/Settings.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ZAPRestAPI-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ZAPRestAPI-0.0.1-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/Spider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/Spider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tr/com/stm/cydecsys/zaprestapi/ExecuteBashCommand.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
@@ -38,7 +32,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/src/main/java/tr/com/stm/cydecsys/zaprestapi" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -79,9 +73,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -90,9 +84,9 @@
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
+      <command value="mvn clean install" />
       <command value="mvn clean" />
       <command value="mvn install" />
-      <command value="mvn clean install" />
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.ZapRestApiApplication">
@@ -181,6 +175,7 @@
       <workItem from="1644476057881" duration="20107000" />
       <workItem from="1644560567660" duration="10443000" />
       <workItem from="1644841704443" duration="26454000" />
+      <workItem from="1648810224250" duration="358000" />
     </task>
     <task id="LOCAL-00001" summary="No database">
       <created>1644393691967</created>

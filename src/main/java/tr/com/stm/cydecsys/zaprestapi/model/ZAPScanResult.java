@@ -18,14 +18,20 @@ public class ZAPScanResult {
     private String targetURL;
     private String result;
     private String scanType;
+    private int highRisk;
+    private int mediumRisk;
+    private int lowRisk;
 
-    public ZAPScanResult(String id, int spider_id, String url, String result, String scanType)
+    public ZAPScanResult(String id, int spider_id, String url, String result, String scanType, int highRisk, int mediumRisk, int lowRisk)
     {
         this.id = id;
         this.spider_id = spider_id;
         this.targetURL = url;
         this.result = result;
         this.scanType = scanType;
+        this.highRisk = highRisk;
+        this.mediumRisk = mediumRisk;
+        this.lowRisk = lowRisk;
     }
     public ZAPScanResult(){}
     public void setScanId(String id) {
@@ -58,6 +64,12 @@ public class ZAPScanResult {
     public void setScanType(String scanType){
         this.scanType = scanType;
     }
+    public void setHighRisk(int highRisk){this.highRisk = highRisk;}
+    public void setMediumRisk(int mediumRisk){this.mediumRisk = mediumRisk;}
+    public void setLowRisk(int lowRisk){this.lowRisk = lowRisk;}
+    public int getHighRisk(){return  highRisk;}
+    public int getLowRisk(){return lowRisk;}
+    public int getMediumRisk(){return mediumRisk;}
 
     @Override
     public boolean equals(Object o){

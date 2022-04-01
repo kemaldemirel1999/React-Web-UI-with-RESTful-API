@@ -41,7 +41,7 @@ const Settings = () => {
         <form className="newUserForm">
             <div className="newUserItem">
                 <label>OwaspZAP Port Number</label>
-                <input name="portNumber" placeholder="example:8080" onChange={handleChange}/>
+                <input name="portNumber" type="text" placeholder="example:8080" onChange={handleChange}/>
             </div>
             <div className="newUserItem">
                 <label>OwaspZAP API Key</label>
