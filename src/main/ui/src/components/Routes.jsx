@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Route, Switch } from 'react-router-dom'
+import {Link, Route, Switch} from 'react-router-dom'
 
 import Dashboard from '../pages/Dashboard'
 import Scans from '../pages/Scans'
@@ -17,7 +17,10 @@ const Routes = () => {
             <Route path='/scans' component={Scans}/>
             <Route path='/settings' component={Settings}/>
             <Route path='/startscan' component={Startscan}/>
-            <Route path='/documentation' component={Documentation}/>
+            <Route path='/documentation' component={() => {
+                window.location.href = 'https://www.zaproxy.org/docs/';
+                return null;
+            }}/>
             <Route path='/results' component={Results}/>
         </Switch>
     )
