@@ -3,6 +3,7 @@ package tr.com.stm.cydecsys.zaprestapi.owaspzap;
 import org.zaproxy.clientapi.core.ApiResponse;
 import org.zaproxy.clientapi.core.ApiResponseElement;
 import org.zaproxy.clientapi.core.ClientApi;
+import tr.com.stm.cydecsys.zaprestapi.ExecuteBashCommand;
 
 import java.nio.charset.StandardCharsets;
 
@@ -42,7 +43,6 @@ public class ActiveScan {
                 progress =
                         Integer.parseInt(
                                 ((ApiResponseElement) api.ascan.status(scanid)).getValue());
-                System.out.println("Active Scan progress : " + progress + "%");
                 if (progress >= 100) {
                     break;
                 }
