@@ -38,5 +38,14 @@
 {"id":38,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":3,"lowrisks":1},
 {"id":39,"scanType":"Active","targetURL":"http://scanme.nmap.org/","status":"Failed","highrisks":0,"middlerisks":0,"lowrisks":0},
 {"id":40,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":3,"lowrisks":1},
-{"id":41,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":3,"lowrisks":1}
+{"id":41,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":3,"lowrisks":1},
+{"id":42,"scanType":"Active","targetURL":"http://scanme.nmap.org/","status":"Failed","highrisks":0,"middlerisks":0,"lowrisks":0},
+{"id":43,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":0,"lowrisks":0},
+{"id":44,"scanType":"Active","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":0,"lowrisks":0},
+{"id":45,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":0,"lowrisks":0},
+{"id":46,"scanType":"Passive","targetURL":"http://www.facebook.com","status":"Finished","highrisks":0,"middlerisks":0,"lowrisks":1},
+{"id":47,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":0,"lowrisks":1},
+{"id":48,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":3,"lowrisks":1},
+{"id":49,"scanType":"Active","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":4,"lowrisks":1},
+{"id":50,"scanType":"Passive","targetURL":"http://scanme.nmap.org/","status":"Finished","highrisks":0,"middlerisks":3,"lowrisks":1}
 ]

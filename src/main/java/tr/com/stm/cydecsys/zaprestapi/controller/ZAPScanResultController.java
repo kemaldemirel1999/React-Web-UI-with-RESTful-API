@@ -423,7 +423,7 @@ public class ZAPScanResultController {
     public ArrayList<String> checkSettingsInputValidity(String givenSettings) {
         int portNo;
         String apikey, address;
-        givenSettings.replaceAll("\"", "");
+        givenSettings = givenSettings.replaceAll("\"", "");
         String[] settings = givenSettings.split(" ");
         try {
             portNo = Integer.parseInt(settings[0]);
@@ -469,7 +469,7 @@ public class ZAPScanResultController {
         ArrayList<String> settings = checkSettingsInputValidity(newSettings);
         try {
             if (settings == null) {
-                throw new Exception("Invalid settings input");
+                throw new Exception("Invalid Settings Input");
             }
             portNo = Integer.parseInt(settings.get(0));
             apikey = settings.get(1);
@@ -480,6 +480,7 @@ public class ZAPScanResultController {
             this.ZAP_ADDRESS = address;
         } catch (Exception e) {
             System.out.println("Invalid settings input");
+            e.printStackTrace();
         }
         updateFailedScan();
     }

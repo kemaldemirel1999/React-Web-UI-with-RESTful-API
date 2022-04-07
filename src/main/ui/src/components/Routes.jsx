@@ -6,7 +6,6 @@ import Dashboard from '../pages/Dashboard'
 import Scans from '../pages/Scans'
 import Settings from '../pages/Settings'
 import Startscan from '../pages/Startscan'
-import Documentation from '../pages/Documentation'
 import Results from '../pages/Results'
 
 
