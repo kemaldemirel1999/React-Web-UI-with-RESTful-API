@@ -6,15 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="164dd16d-8983-4b2d-bdb8-7af63531d6b2" name="Changes" comment="No database">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runProject.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ui/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/ui/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/node_modules/.cache/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/last-scan-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/last-scan-list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/scan-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/scan-list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/status-card-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/assets/JsonData/status-card-data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ui/src/components/Routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/components/Routes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/ui/src/pages/Documentation.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ZAPRestAPI-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ZAPRestAPI-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/src/components/startscan/Startscan.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/components/startscan/Startscan.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/src/pages/Settings.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/pages/Settings.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/src/pages/Startscan.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/src/pages/Startscan.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,6 +199,7 @@
       <workItem from="1649164853845" duration="661000" />
       <workItem from="1649239791494" duration="476000" />
       <workItem from="1649323699238" duration="3174000" />
+      <workItem from="1649760391886" duration="527000" />
     </task>
     <task id="LOCAL-00001" summary="No database">
       <created>1644393691967</created>

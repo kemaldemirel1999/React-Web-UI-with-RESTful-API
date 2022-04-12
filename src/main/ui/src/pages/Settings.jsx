@@ -39,15 +39,15 @@ const Settings = () => {
             <div className="newUser">
         <h1 className="newUserTitle">Settings</h1>
         <form className="newUserForm">
-            <div className="newUserItem">
+            <div className="newScanItem">
                 <label>OwaspZAP Port Number</label>
                 <input name="portNumber" type="text" placeholder="example:8080" onChange={handleChange}/>
             </div>
-            <div className="newUserItem">
+            <div className="newScanItem">
                 <label>OwaspZAP API Key</label>
                 <input name="apiKey" type="text" placeholder="example:1234567890" onChange={handleChange}/>
             </div>
-            <div className="newUserItem">
+            <div className="newScanItem">
                 <label>OwaspZAP Address</label>
                 <input name="zapAdress" type="text" placeholder="example:localhost" onChange={handleChange}/>
             </div>

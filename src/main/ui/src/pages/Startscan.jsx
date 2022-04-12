@@ -55,15 +55,15 @@ const Startscan = () => {
         <div className="newScan">
       <h1 className="newUserTitle">New Scan</h1>
       <form className="newScanForm" >
-        <div className="newUserItem">
-            <div className="newUserItem">
+        <div className="newScanItem">
+            <div className="newScanItem">
             <label>Choose Scan Type</label>
-            <select className="newUserSelect" onChange={handleChange} name="isItActiveScan" >
+            <select className="newScanSelect" onChange={handleChange} name="isItActiveScan" >
                 <option name="isItActiveScan" onChange={handleChange} value="yes">Active Scan</option>
                 <option name="isItActiveScan" onChange={handleChange} value="no">Passive Scan</option>
             </select>
             </div>
-            <div className="newUserItem">
+            <div className="newScanItem">
             <label>Target URL</label>
                 <input name="targetUrl" placeholder="https://example.com.tr" onChange={handleChange}/>
             </div>

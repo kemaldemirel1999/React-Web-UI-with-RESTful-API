@@ -12,7 +12,7 @@
     font-weight: 600;
     color: rgba(0, 0, 0, 0.514);
   }
-  .newUserItem {
+  .newScanItem {
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -20,31 +20,23 @@
     margin-right: 20px;
   }
   
-  .newUserItem > label {
+  .newScanItem > label {
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: 600;
     color: rgb(189, 26, 26);
   }
   
-  .newUserItem > input {
+  .newScanItem > input {
     height: 30px;
     padding: 10px;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
   }
   
-  .newUserGender > input {
-    margin-top: 15px;
-  }
+
   
-  .newUserGender>label{
-      margin: 10px;
-      font-size: 14px;
-      color: rgb(0, 0, 0);
-  }
-  
-  .newUserSelect{
+  .newScanSelect{
       height: 30px;
       border-radius: 7px;
   }
